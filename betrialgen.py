@@ -9,12 +9,12 @@ parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
 
 p_btgen = subparsers.add_parser("btgen",help="Generates a set for the bernoulli trials out of xml and img files")
-p_btgen.add_argument('-p','--path',default='./test/BeTrialGen/input/???/*.xml')
-p_btgen.add_argument('-o','--output',default='./test/BeTrial/input/???/')
+p_btgen.add_argument('-p','--path',default='./test/BeTrialGen/input/*.xml')
+p_btgen.add_argument('-o','--output',default='./test/BeTrial/input/')
 p_btgen.add_argument('-x','--extension',default='jpg')
 p_btgen.add_argument('-f','--imgfolder',default='')
 p_btgen.add_argument('--minchar',default=3,type=int)
-p_btgen.add_argument('--maxcount',default=525, type=int)
+p_btgen.add_argument('--maxcount',default=25, type=int)
 p_btgen.add_argument('-l','--toplevel',default="line")
 
 args = parser.parse_args()
@@ -66,7 +66,8 @@ def main(args):
         img = img.crop([int(coord) for coord in ldata.coordinates])
 
         ### STORE IMG & TXT #####
-        fname= os.path.basename(xmlfname).split("_")[0]+"-"+os.path.basename(xmlfname).split("_")[1]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
+        #fname= os.path.basename(xmlfname).split("_")[0]+"-"+os.path.basename(xmlfname).split("_")[1]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
+        fname= os.path.basename(xmlfname).split("_")[0]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
         img.save(args.output+fname+".png","PNG")
         import codecs
         with codecs.open(args.output+fname+".txt","w","utf-8") as fout:

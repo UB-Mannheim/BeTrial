@@ -51,6 +51,13 @@ Create an evaluable Bernoulli-Trial html ("betrial.py").
 
     $ python3 ./betrial.py betrial (+ parameters)
 
+Testcase
+--------
+
+$ python3 ./betrialgen.py btgen
+$ python3 ./betrial.py betrial ./test/BeTrial/input/*.png
+
+
 Copyright and License
 --------
 

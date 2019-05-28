@@ -21,7 +21,7 @@ p_betrial = subparsers.add_parser("betrial",help="generate a betrial.html")
 p_betrial.add_argument('-t','--template',default="./template/template_akf.html")
 p_betrial.add_argument('-r','--rescale',action="store_true")
 p_betrial.add_argument('-d','--debug',action="store_true")
-p_betrial.add_argument('-o','--output',default="correction.html")
+p_betrial.add_argument('-o','--output',default="./test/BeTrial/output/betrial.html")
 p_betrial.add_argument('-x','--extension',default='.txt')
 p_betrial.add_argument('-f','--fontsize',default=20,type=int)
 p_betrial.add_argument('-H','--height',default=24,type=int)
@@ -112,6 +112,7 @@ def main(args):
                         text = textsplits[0] + replacement + value + "</span>" + textsplits[2]
             else:
                 text = u""
+            print(fname)
             with open(fname, "rb") as pngstream:
                 png = pngstream.read()
 
