@@ -4,7 +4,7 @@
 ## Overview
 **Bernoulli trial generator tool for OCR result validation**
 
-This repo is part of the [Aktienführer-Datenarchiv][akf-link] DFG project.
+This repo is part of the [Aktienführer-Datenarchiv][dataarchive-link] DFG project.
 The DFG recommends the Bernoulli trial to validate OCR results.
 To reduce the amount of effort to perform the test, a "Bernoulli Trial HTML Generator" was designed.
 This generator work with Abbyy-XML-Files (*\*.xml*) and their JPG-image pendant (*\*.jpg*).
@@ -12,7 +12,7 @@ This generator work with Abbyy-XML-Files (*\*.xml*) and their JPG-image pendant 
 
 ## Installation
 
-This installation is tested with [Ubuntu][ubuntu-link] and we expect that it should
+This installation is tested with Ubuntu and we expect that it should
 work for other similar environments similarly.
 
 ### 1. Requirements
@@ -38,24 +38,24 @@ The whole projects has three major steps:
 
 Load the files from the web ("filegetter.py").
 
-    $ python3 ./filegetter.py fgetter (+ parameters)
+    $ python ./filegetter.py fgetter (+ parameters)
 
 ### Creating a dataset
 Create a set of files for the Bernoulli-Trials ("betrialgen.py")
 
-    $ python3 ./betrialgen.py btgen (+ parameters)
+    $ python ./betrialgen.py btgen (+ parameters)
 
 
 ### Creating a html page with csv export
 Create an evaluable Bernoulli-Trial html ("betrial.py").
 
-    $ python3 ./betrial.py betrial (+ parameters)
+    $ python ./betrial.py betrial (+ parameters)
 
 Testcase
 --------
 
-$ python3 ./betrialgen.py btgen
-$ python3 ./betrial.py betrial ./test/BeTrial/input/*.png
+$ python ./betrialgen.py btgen
+$ python ./betrial.py betrial ./test/BeTrial/input/*.png
 
 
 Copyright and License
@@ -74,10 +74,15 @@ Acknowledgements
 -------
 
 The tools are depending on some third party libraries:
- * [ocropy][ocropy-link] basis of the "betrial.py".
+ * [ocropy][ocropy-link] is a collection of document analysis programs.
+ One of them is [ocropus-gtedit][gtedit-link] which builds the basis of the "betrial.py" source code.
+ ocropus-gtedit produces an editable html-page,
+ where you can see the images of all the text lines and below each line the recognized text.
+ The recognized text can be updated to produce ground truth data.
  * [Export2CSV][exportcsv-link] export the data to csv.
 
 [akf-link]:  https://github.com/UB-Mannheim/Aktienfuehrer-Datenarchiv-Tools "Aktienfuehrer-Datenarchiv-Tools"
 [dataarchive-link]: https://digi.bib.uni-mannheim.de/aktienfuehrer/ "Aktienfuehrer-Datenarchiv"
 [ocropy-link]:  https://github.com/tmbdev/ocropy"
 [exportcsv-link]: https://medium.com/@danny.pule/export-json-to-csv-file-using-javascript-a0b7bc5b00d2
+[gtedit-link]: https://github.com/tmbdev/ocropy/wiki/Working-with-Ground-Truth
