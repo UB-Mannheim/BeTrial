@@ -1,16 +1,4 @@
 import inspect
-import numpy as np
-
-def summary(x):
-    """Summarize a datatype as a string (for display and debugging)."""
-    if type(x)==np.ndarray:
-        return "<ndarray %s %s>"%(x.shape,x.dtype)
-    if type(x)==str and len(x)>10:
-        return '"%s..."'%x
-    if type(x)==list and len(x)>10:
-        return '%s...'%x
-    return str(x)
-
 
 ################################################################
 ### Ocropy exceptions

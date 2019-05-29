@@ -5,31 +5,24 @@ from PIL import ImageDraw, Image
 import random
 import argparse
 
-parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
+p_btgen = argparse.ArgumentParser()
+#subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
 
-p_btgen = subparsers.add_parser("btgen",help="Generates a set for the bernoulli trials out of xml and img files")
+#p_btgen = subparsers.add_parser("btgen",help="Generates a set for the bernoulli trials out of xml and img files")
 p_btgen.add_argument('-p','--path',default='./test/BeTrialGen/input/*.xml')
-p_btgen.add_argument('-o','--output',default='./test/BeTrial/input/')
+p_btgen.add_argument('-o','--outdir',default='./test/BeTrial/input/')
 p_btgen.add_argument('-x','--extension',default='jpg')
 p_btgen.add_argument('-f','--imgfolder',default='')
 p_btgen.add_argument('--minchar',default=3,type=int)
 p_btgen.add_argument('--maxcount',default=25, type=int)
 p_btgen.add_argument('-l','--toplevel',default="line")
 
-args = parser.parse_args()
-
-### Init ####
-#img_extension = "jpg"
-#img_path = ""
-#maxcount = 30
-#mincharlen = 3
-#xmlfiles = glob.glob()
-#LINEWISE = True
-
+args = p_btgen.parse_args()
 
 def main(args):
     xmlfiles = glob.glob(args.path)
+    if not os.path.exists(args.outdir):
+        os.makedirs(args.outdir)
     count = 0
     while count != args.maxcount:
         xmlfname = xmlfiles[random.randint(0,len(xmlfiles)-1)]
@@ -68,13 +61,12 @@ def main(args):
         ### STORE IMG & TXT #####
         #fname= os.path.basename(xmlfname).split("_")[0]+"-"+os.path.basename(xmlfname).split("_")[1]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
         fname= os.path.basename(xmlfname).split("_")[0]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
-        img.save(args.output+fname+".png","PNG")
+        img.save(args.outdir+fname+".png","PNG")
         import codecs
-        with codecs.open(args.output+fname+".txt","w","utf-8") as fout:
+        with codecs.open(args.outdir+fname+".txt","w","utf-8") as fout:
             fout.write(txtline.strip())
         count += 1
 
 if __name__ == "__main__":
-    args.subparser_name = "btgen"
     main(args)
 

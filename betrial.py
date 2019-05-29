@@ -14,11 +14,11 @@ import io
 
 import ocrolib
 
-parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
+p_betrial = argparse.ArgumentParser()
+#subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
 
-p_betrial = subparsers.add_parser("betrial",help="generate a betrial.html")
-p_betrial.add_argument('-t','--template',default="./template/template_akf.html")
+#p_betrial = subparsers.add_parser("betrial",help="generate a betrial.html")
+p_betrial.add_argument('-t','--template',default="./template/template_01.html")
 p_betrial.add_argument('-r','--rescale',action="store_true")
 p_betrial.add_argument('-d','--debug',action="store_true")
 p_betrial.add_argument('-o','--output',default="./test/BeTrial/output/betrial.html")
@@ -35,7 +35,7 @@ def P(x,*args):
     stream.write(x%args)
     stream.write("\n")
 
-args = parser.parse_args()
+args = p_betrial.parse_args()
 
 def approx_split_range(n,k):
     if n%k==0:
@@ -79,6 +79,8 @@ def main(args):
         base = re.sub(r'\..*?$', '', args.output)
         chunks = [(base + "-%03d" % i + ".html", c) for i, c in enumerate(chunks)]
         chunks[0] = (args.output, chunks[0][1])
+        if not os.path.exists(os.path.basename(args.output)):
+            os.makedirs(os.path.basename(args.output))
 
     for oname, files in chunks:
         print("# writing", oname)
@@ -149,7 +151,6 @@ def main(args):
         stream.close()
 
 if __name__ == "__main__" or args.subparser_name=="betrial":
-    args.subparser_name = "betrial"
     main(args)
 
 

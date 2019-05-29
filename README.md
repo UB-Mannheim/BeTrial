@@ -38,29 +38,29 @@ The whole projects has three major steps:
 
 Load the files from the web ("filegetter.py").
 
-    $ python ./filegetter.py fgetter (+ parameters)
+    $ python ./filegetter.py (+ parameters)
 
 ### Creating a dataset
 Create a set of files for the Bernoulli-Trials ("betrialgen.py")
 
-    $ python ./betrialgen.py btgen (+ parameters)
+    $ python ./betrialgen.py (+ parameters)
 
 
 ### Creating a html page with csv export
 Create an evaluable Bernoulli-Trial html ("betrial.py").
 
-    $ python ./betrial.py betrial (+ parameters)
+    $ python ./betrial.py (+ parameters)
 
 Testcase
 --------
 
 Creating a dataset
 
-    $ python ./betrialgen.py btgen
+    $ python ./betrialgen.py
 
 Creating the html-page
 
-    $ python ./betrial.py betrial ./test/BeTrial/input/*.png
+    $ python ./betrial.py ./test/BeTrial/input/*.png
 
 
 Copyright and License

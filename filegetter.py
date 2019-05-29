@@ -4,16 +4,16 @@ import random
 import os
 import argparse
 
-parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
+p_fgetter = argparse.ArgumentParser()
+#subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
 
-p_fgetter = subparsers.add_parser("fgetter",help="Generates a set for the bernoulli trials out of xml and img files")
+#p_fgetter = subparsers.add_parser("fgetter",help="Generates a set for the bernoulli trials out of xml and img files")
 p_fgetter.add_argument('--url',default='')
-p_fgetter.add_argument('-o','--output',default="./test/BeTrialGen/input/???/")
+p_fgetter.add_argument('-o','--outdir',default="./test/BeTrialGen/input/???/")
 p_fgetter.add_argument('-x','--extension',default='xml')
 p_fgetter.add_argument('--amount',default=525,type=int)
 
-args = parser.parse_args()
+args = p_fgetter.parse_args()
 
 def scrap_furls(url, ext=''):
     page = requests.get(url).text
@@ -35,6 +35,8 @@ def select_furls(furls,amount):
     return furls_sel
 
 def dl_files(furls_sel,outdir):
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
     for furl in furls_sel:
         r = requests.get(furl, allow_redirects=True)
         year = furl.split("/")[-3].split("_")[-1][:4]
@@ -46,11 +48,10 @@ def dl_files(furls_sel,outdir):
 def main(args):
     furls = scrap_furls(args.url, args.extension)
     furls_sel = select_furls(furls, args.amount)
-    dl_files(furls_sel, args.output)
+    dl_files(furls_sel, args.outdir)
     return 0
 
 if __name__ == "__main__":
-    args.subparser_name = "fgetter"
     main(args)
 
 
