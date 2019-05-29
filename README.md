@@ -64,10 +64,8 @@ Creating the html-page
 
     $ python ./betrial.py ./test/BeTrial/input/*.png
 
-Output
-------
+The validation page can be opened with firefox
 
-This validation page can be opened with firefox
 ```bash
 > firefox out.html
 ```
