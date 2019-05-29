@@ -1,4 +1,6 @@
-# BeTrial
+![betrial-logo](docs/img/BeTrial.png)
+BeTrial
+=========
 ![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)
 
 ## Overview
