@@ -64,6 +64,24 @@ Creating the html-page
 
     $ python ./betrial.py ./test/BeTrial/input/*.png
 
+Output
+------
+
+This validation page can be opened with firefox
+```bash
+> firefox out.html
+```
+
+![correction](docs/img/example_page.png)
+
+You see the images of all the text lines from the dataset and
+below each line there is the recognized text.
+One of the character is marked with a red rectangle.
+This character should be manually validated.
+Therefore you can select one of the radio buttons below.
+For example above you should check the letter `j` in the word `just`.
+Which is `Ok`.
+
 
 Copyright and License
 --------
