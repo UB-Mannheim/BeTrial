@@ -80,7 +80,7 @@ Therefore you can select one of the radio buttons below.
 For example above you should check the letter `j` in the word `just`.
 Which is `Ok`.
 
-The button `Count` displays an overview, about the current validation status.
+The button `Counts` displays an overview, about the current validation status.
 
 ![example-count](docs/img/example_count.png)
 
