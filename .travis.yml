@@ -32,4 +32,4 @@ install:
 
 script:
 - python ./betrialgen.py
-- python ./betrial.py
+- python ./betrial.py ./test/BeTrial/input/*.png -o ./out.html
