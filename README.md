@@ -1,6 +1,8 @@
 ![betrial-logo](docs/img/BeTrial.png)
 
 -------------------------------------
+[![Build Status](https://travis-ci.org/JKamlah/crass.svg?branch=master)](https://travis-ci.org/JKamlah/BeTrial)
+![Python 2.7](https://img.shields.io/badge/python-2.7-yellow.svg)
 ![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)
 
 ## Overview
