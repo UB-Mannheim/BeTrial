@@ -36,7 +36,7 @@ cd BeTrial
 
 ## Process steps
 
-The whole projects has three major steps:
+The whole projects has four major steps:
 
 ### Loading files from web
 
@@ -51,9 +51,16 @@ Create a set of files for the Bernoulli-Trials ("betrialgen.py")
 
 
 ### Creating a html page with csv export
-Create an evaluable Bernoulli-Trial html ("betrial.py").
+Create an interactive Bernoulli-Trial html ("betrial.py").
 
     $ python ./betrial.py (+ parameters)
+
+### Evaluating the results
+The betrial_eval html page helps to evaluate our results.
+
+```bash
+> firefox betrial_eval.html
+```
 
 Testcase
 --------
@@ -86,9 +93,23 @@ The button `Counts` displays an overview, about the current validation status.
 
 ![example-count](docs/img/example_count.png)
 
-With `Export Gesamtergebnis` and `Export Einzelergenisse` the validation
-can be stored in `csv` files.
+The results can be stored with  `Export Gesamtergebnis` and `Export Einzelergenisse`
+in `csv` files.
 
+To evaluate the results, open the `betrial_evals.html` file:
+
+```bash
+> firefox betrial_eval.html
+```
+
+This page helps to calculate the cumulative distribution function (cdf).
+
+![example-count](docs/img/example_cdf.png)
+
+And the necessary amount of successful events to proof the predicted accuracy
+considering a certain error-probability.
+
+![example-count](docs/img/example_signalpha.png)
 
 Copyright and License
 --------
