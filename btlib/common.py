@@ -12,7 +12,7 @@ import sys
 import unicodedata
 import inspect
 import glob
-from ocrolib.exceptions import FileNotFound
+from btlib.exceptions import FileNotFound
 from toplevel import checks
 import chars
 import codecs
