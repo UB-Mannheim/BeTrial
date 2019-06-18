@@ -12,7 +12,7 @@ import glob
 from PIL import Image
 import io
 
-import ocrolib
+import btlib
 
 p_betrial = argparse.ArgumentParser()
 #subparsers = parser.add_subparsers(help="subcommands",dest="subparser_name")
@@ -102,10 +102,10 @@ def main(args):
             P("</head>")
             P("<body>")
         for i, fname in enumerate(args.files):
-            base, _ = ocrolib.allsplitext(fname)
+            base, _ = btlib.allsplitext(fname)
             value = "NA"
             if os.path.exists(base + args.extension):
-                text = ocrolib.read_text(base + args.extension)
+                text = btlib.read_text(base + args.extension)
                 if "<@>" in text:
                     textsplits = text.split("<@>")
                     if len(textsplits) == 3:

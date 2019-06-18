@@ -1,6 +1,6 @@
 import glob
 import os
-import ocrolib
+import btlib
 from PIL import ImageDraw, Image
 import random
 import argparse
@@ -33,7 +33,7 @@ def main(args):
         except Exception as e:
             print "No image found! Please put the images in the same folder!"
             continue
-        data = ocrolib.get_xml_document(xmlfname, level=args.toplevel)
+        data = btlib.get_xml_document(xmlfname, level=args.toplevel)
         if len(data.page) < 2: continue
         lidx = random.randint(0, len(data.page)-1)
         ldata = data.page[lidx]
