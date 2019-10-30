@@ -82,9 +82,8 @@ def main(args):
         base = re.sub(r'\..*?$', '', args.output)
         chunks = [(base + "-%03d" % i + ".html", c) for i, c in enumerate(chunks)]
         chunks[0] = (args.output, chunks[0][1])
-    if not os.path.exists(os.path.basename(args.output)):
-        os.makedirs(os.path.basename(args.output))
-
+    if not os.path.exists(os.path.dirname(args.output)):
+        os.makedirs(os.path.dirname(args.output))
     for oname, files in chunks:
         print("# writing", oname)
         if args.template != '':
