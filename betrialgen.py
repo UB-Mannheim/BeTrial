@@ -20,20 +20,25 @@ p_btgen.add_argument('-l','--toplevel',default="line")
 args = p_btgen.parse_args()
 
 def main(args):
-    xmlfiles = glob.glob(args.path)
+    files = glob.glob(args.path)
     if not os.path.exists(args.outdir):
         os.makedirs(args.outdir)
     count = 0
     while count != args.maxcount:
-        xmlfname = xmlfiles[random.randint(0,len(xmlfiles)-1)]
-        fbase = xmlfname.rsplit(".",1)[0]
+        fname = files[random.randint(0,len(files)-1)]
+        fbase = fname.rsplit(".",1)[0]
         try:
             #if img_path == "":
             img = Image.open(fbase+"."+args.extension)
         except Exception as e:
             print "No image found! Please put the images in the same folder!"
             continue
-        data = btlib.get_xml_document(xmlfname, level=args.toplevel)
+        data = None
+        if fname.rsplit(".",1)[-1]  == "xml":
+            data = btlib.get_xml_document(fname, level=args.toplevel)
+        if fname.rsplit(".",1)[-1] == "hocr":
+            data = btlib.get_hocr_document(fname, level=args.toplevel)
+
         if len(data.page) < 2: continue
         lidx = random.randint(0, len(data.page)-1)
         ldata = data.page[lidx]
@@ -60,7 +65,7 @@ def main(args):
 
         ### STORE IMG & TXT #####
         #fname= os.path.basename(xmlfname).split("_")[0]+"-"+os.path.basename(xmlfname).split("_")[1]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
-        fname= os.path.basename(xmlfname).split("_")[0]+"_"+os.path.basename(xmlfname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
+        fname= os.path.basename(fname).split("_")[0]+"_"+os.path.basename(fname).split("_")[-1].rsplit(".",1)[0]+"_"+str(lidx)+"_"+str(cidx)
         img.save(args.outdir+fname+".png","PNG")
         import codecs
         with codecs.open(args.outdir+fname+".txt","w","utf-8") as fout:

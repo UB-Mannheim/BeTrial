@@ -11,7 +11,7 @@
 This repo is part of the [Aktienführer-Datenarchiv][akf-link] DFG project.
 The DFG recommends the Bernoulli trial to validate OCR results.
 To reduce the amount of effort to perform the test, a "Bernoulli Trial HTML Generator" was designed.
-This generator work with Abbyy-XML-Files (*\*.xml*) and their JPG-image pendant (*\*.jpg*).
+This generator work with Abbyy-XML-Files (*\*.xml*)  or hocr-Files (*\*.hocr*) and their JPG-image pendant (*\*.jpg*).
 
 
 ## Installation
@@ -47,13 +47,13 @@ Load the files from the web ("filegetter.py").
 ### Creating a dataset
 Create a set of files for the Bernoulli-Trials ("betrialgen.py")
 
-    $ python ./betrialgen.py (+ parameters)
+    $ python ./betrialgen.py -p /input/dir/*.xml or *.hocr (+ parameters)
 
 
 ### Creating a html page with csv export
 Create an interactive Bernoulli-Trial html ("betrial.py").
 
-    $ python ./betrial.py (+ parameters)
+    $ python ./betrial.py /betrial/input/dir/*.png (+ parameters)
 
 ### Evaluating the results
 The betrial_eval html page helps to evaluate our results.

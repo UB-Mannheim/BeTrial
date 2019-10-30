@@ -65,9 +65,12 @@ def url_decode(image):
 
 def main(args):
     # ocropus-gtedit html temp/????/??????.bin.png -o temp-correction.html
-    files = args.files[:]
+    if args.files is None:
+        files = ["./test/BeTrial/input/*.png"]
+    else:
+        files = args.files[:]
     for i, fname in enumerate(files):
-        assert not os.path.isabs(fname), "absolute file names not allowed"
+        #assert not os.path.isabs(fname), "absolute file names not allowed"
         if "*" in fname:
             del args.files[i]
             args.files.extend(sorted(glob.glob(fname)))
@@ -79,8 +82,8 @@ def main(args):
         base = re.sub(r'\..*?$', '', args.output)
         chunks = [(base + "-%03d" % i + ".html", c) for i, c in enumerate(chunks)]
         chunks[0] = (args.output, chunks[0][1])
-        if not os.path.exists(os.path.basename(args.output)):
-            os.makedirs(os.path.basename(args.output))
+    if not os.path.exists(os.path.basename(args.output)):
+        os.makedirs(os.path.basename(args.output))
 
     for oname, files in chunks:
         print("# writing", oname)
